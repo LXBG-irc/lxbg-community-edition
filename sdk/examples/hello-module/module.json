@@ -1,0 +1,10 @@
+{
+  "id": "org.lxbg.example.hello",
+  "name": "Hello Module",
+  "version": "0.1.0",
+  "api": "0.1",
+  "lxbg": ">=1.0.0",
+  "entrypoint": "module.py",
+  "permissions": ["irc.message.send"],
+  "hooks": ["channel.join"]
+}

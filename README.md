@@ -57,6 +57,12 @@ Project page and packaged download: https://lxbg.de/community-edition.php?src=gi
 
 Live community: https://lxbg.de/?src=github
 
+## LXBG Platform & Modules
+
+LXBG is being designed as a complete modular IRC stack: **LXBGIRCd + LXBG Services + LXBG Web + LXBG CAM + LXBG Modules**. The first Module SDK specification preview is included in `docs/MODULES.md`, with a machine-readable manifest schema and example module under `sdk/`.
+
+The module runtime and public Module Hub are roadmap work and are **not** claimed as production-ready in Community Edition 1.0. See `docs/PLATFORM.md` for the architecture direction.
+
 ## Feedback and contributions
 
 Issues are welcome for bugs, installation feedback and compatibility reports. The project is young, so reports from IRC operators, self-hosters and networking enthusiasts are especially useful.

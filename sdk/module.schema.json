@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lxbg.de/schemas/module-0.1.json",
+  "title": "LXBG Module Manifest",
+  "type": "object",
+  "required": ["id", "name", "version", "api", "lxbg", "entrypoint", "permissions", "hooks"],
+  "properties": {
+    "id": {"type":"string","pattern":"^[a-z0-9]+(?:[._-][a-z0-9]+)+$"},
+    "name": {"type":"string","minLength":1,"maxLength":80},
+    "version": {"type":"string","minLength":1,"maxLength":32},
+    "api": {"type":"string","minLength":1,"maxLength":16},
+    "lxbg": {"type":"string","minLength":1,"maxLength":32},
+    "entrypoint": {"type":"string","minLength":1,"maxLength":128},
+    "permissions": {"type":"array","uniqueItems":true,"items":{"type":"string"}},
+    "hooks": {"type":"array","uniqueItems":true,"items":{"enum":["user.connect","user.authenticated","user.disconnect","channel.created","channel.join","channel.part","message.before","message.after","cam.started","cam.stopped"]}}
+  },
+  "additionalProperties": false
+}
