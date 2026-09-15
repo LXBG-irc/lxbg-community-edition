@@ -1,37 +1,72 @@
-# LXBG Community Edition 1.0
+# LXBG Community Edition
 
-Free starter edition of the LXBG IRC stack for running your own independent IRC community.
+**Real IRC. Modern web. Self-hosted.**
 
-Included:
-- LXBGIRCd 1.0 (Linux amd64)
-- TLS IRC and classic IRC client support
-- IRCv3 CAP + SASL PLAIN authentication bridge
-- Web account/register/login starter UI
-- Channel registration and role schema
-- WebSocket bridge for browser clients
-- Database schema for accounts, nicknames, channels and CAM permissions
-- systemd templates and installer
+LXBG Community Edition is a self-hosted IRC community platform built around **LXBGIRCd 1.0**, with classic IRC client support plus a browser-first community experience.
 
-## Requirements
-Fresh Debian 12 / Ubuntu 24.04 style Linux server, root access, MariaDB/MySQL, PHP 8.2+, Python 3, nginx or another web server, and a TLS certificate for your IRC hostname.
+The project grew from an IRC community originally operated around 2005. The goal is not to replace IRC with another closed chat platform, but to bring independent IRC communities into the modern web while keeping real IRC underneath.
+
+## Features
+
+- LXBGIRCd 1.0 IRC daemon
+- Classic IRC client compatibility
+- TLS and SASL authentication
+- Browser accounts and web chat starter UI
+- Channels and permission foundations
+- WebSocket bridge for browser IRC connectivity
+- WebRTC webcam foundations for community experiences
+- SQL schema and example configuration
+- systemd service templates
+- Conservative Linux installer
 
 ## Quick start
-1. Copy this folder to `/opt/lxbg-ce`.
-2. Copy `config.example.json` to `config.json` and enter your database settings.
-3. Create a database and import `schema.sql`.
-4. Point your web server at `web/` for the starter account/channel UI.
-5. Set the environment values shown in `systemd/lxbg-ircd.service.example`.
-6. Install/start the auth bridge first, then LXBGIRCd, then the WebSocket bridge.
 
-Or run `sudo ./install.sh` after reviewing its variables. The installer is intentionally conservative: it will not install packages, configure DNS, request certificates or open firewall ports automatically.
+Requirements: Linux amd64, MySQL/MariaDB, PHP 8+, Python 3 and systemd.
 
-## Default ports
-- IRC: 6667
-- IRC TLS: 6697
-- WebSocket bridge: 8000 (localhost; reverse proxy it as WSS)
+```bash
+unzip LXBG-Community-Edition-1.0.zip
+cd LXBG-Community-Edition-1.0
+cp config.example.json config.json
+```
+
+Create a database, import `schema.sql`, edit `config.json`, review the installer and then run:
+
+```bash
+sudo ./install.sh
+```
+
+The installer intentionally does **not** configure DNS, firewall rules, public TLS certificates or automatically expose services to the internet. Review `docs/INSTALL.md` before deployment.
+
+## Repository layout
+
+| Path | Purpose |
+| --- | --- |
+| `bin/` | LXBGIRCd Linux amd64 binary |
+| `services/` | Authentication and WebSocket/service components |
+| `web/` | Starter community web interface |
+| `systemd/` | Example service units |
+| `schema.sql` | Community Edition database schema |
+| `config.example.json` | Safe example configuration |
+| `docs/INSTALL.md` | Installation guide |
+
+## Community Edition
+
+This repository is the free Community Edition starter build. It is intended for self-hosters, testers and people interested in running independent IRC infrastructure. It is not a turnkey copy of the production lxbg.de environment.
+
+Project page and packaged download: https://lxbg.de/community-edition.php?src=github
+
+Live community: https://lxbg.de/?src=github
+
+## Feedback and contributions
+
+Issues are welcome for bugs, installation feedback and compatibility reports. The project is young, so reports from IRC operators, self-hosters and networking enthusiasts are especially useful.
+
+A future module ecosystem is planned so independently developed extensions can be installed without modifying the core.
 
 ## Security
-Do not expose `config.json`, database credentials, auth sockets, or state files through the web root. Use TLS for public IRC. Change all example values before production use.
 
-## Project
-Live project and demo: https://lxbg.de/launch.php
+Never commit production credentials, private keys, certificates or `config.json`. The repository `.gitignore` excludes common local secret files. For security-sensitive reports, avoid posting credentials or exploitable private infrastructure details in public issues.
+
+## License
+
+No open-source license is granted by this repository yet. The Community Edition is distributed as a free-to-use starter edition under its accompanying project terms. A formal source/module licensing model will be published separately.
