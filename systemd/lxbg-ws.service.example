@@ -1,0 +1,16 @@
+[Unit]
+Description=LXBG CE WebSocket Bridge
+After=lxbg-ircd.service
+[Service]
+Type=simple
+User=lxbg
+Group=lxbg
+Environment=LXBG_IRC_HOST=127.0.0.1
+Environment=LXBG_IRC_PORT=6667
+Environment=LXBG_WS_HOST=127.0.0.1
+Environment=LXBG_WS_PORT=8000
+ExecStart=/usr/bin/python3 /opt/lxbg-ce/services/ws_bridge.py
+Restart=always
+NoNewPrivileges=true
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+config.json
+*.pem
+*.key
+*.crt
+*.log
+.DS_Store

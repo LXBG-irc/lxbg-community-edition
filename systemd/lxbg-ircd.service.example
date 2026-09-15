@@ -1,0 +1,21 @@
+[Unit]
+Description=LXBGIRCd Community Edition
+After=network.target lxbg-auth.service
+Requires=lxbg-auth.service
+[Service]
+Type=simple
+User=lxbg
+Group=lxbg
+Environment=LXBG_SERVER_NAME=irc.example.org
+Environment=LXBG_IRC_ADDR=0.0.0.0:6667
+Environment=LXBG_TLS_ADDR=0.0.0.0:6697
+Environment=LXBG_TLS_CERT=/etc/letsencrypt/live/irc.example.org/fullchain.pem
+Environment=LXBG_TLS_KEY=/etc/letsencrypt/live/irc.example.org/privkey.pem
+Environment=LXBG_AUTH_SOCKET=/run/lxbg-ce/auth.sock
+Environment=LXBG_STATE_FILE=/var/lib/lxbg-ce/state.json
+ExecStart=/opt/lxbg-ce/bin/lxbgircd-linux-amd64
+Restart=always
+LimitNOFILE=16384
+NoNewPrivileges=true
+[Install]
+WantedBy=multi-user.target

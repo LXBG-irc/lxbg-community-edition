@@ -1,0 +1,14 @@
+[Unit]
+Description=LXBG CE Auth Bridge
+After=network.target mariadb.service
+[Service]
+Type=simple
+User=lxbg
+Group=lxbg
+Environment=LXBG_AUTH_SOCKET=/run/lxbg-ce/auth.sock
+Environment=LXBG_SERVICES_CONFIG=/opt/lxbg-ce/config.json
+ExecStart=/usr/bin/python3 /opt/lxbg-ce/services/auth_bridge.py
+Restart=always
+NoNewPrivileges=true
+[Install]
+WantedBy=multi-user.target
