@@ -1,10 +1,18 @@
-__pycache__/
-*.py[cod]
+
+*.bak
+*.bak.*
+config.json
+config.local.json
+*.crt
+.DS_Store
 .env
 .env.*
-config.json
-*.pem
 *.key
-*.crt
 *.log
-.DS_Store
+logs/
+*.pem
+private/
+# Production/private material
+__pycache__/
+*.py[cod]
+secrets/

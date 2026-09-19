@@ -71,4 +71,23 @@ async def main():
  except FileNotFoundError:pass
  srv=await asyncio.start_unix_server(handle,SOCK);os.chmod(SOCK,0o660)
  async with srv:await srv.serve_forever()
-cfg=Config.load(os.getenv('LXBG_SERVICES_CONFIG','/etc/lxbg-services/config.json'));asyncio.run(main())
+def tenant_db_cfg():
+    """Use a tenant-local JKWEB database config when LXBG_TENANT_CONFIG is set.
+    Falls back to the legacy services DB only for the production/legacy instance.
+    """
+    p=os.getenv('LXBG_TENANT_CONFIG','').strip()
+    if not p:
+        return None
+    with open(p,'r',encoding='utf-8') as f:
+        raw=json.load(f)
+    d=raw.get('db') or raw.get('database') or {}
+    need=('host','username','password','database')
+    if not all(d.get(k) for k in need):
+        raise RuntimeError('tenant database config incomplete')
+    return {'host':d['host'],'port':int(d.get('port',3306)),'username':d['username'],'password':d['password'],'database':d['database']}
+
+cfg=Config.load(os.getenv('LXBG_SERVICES_CONFIG','/etc/lxbg-services/config.json'))
+tdb=tenant_db_cfg()
+if tdb is not None:
+    cfg.db=tdb
+asyncio.run(main())
