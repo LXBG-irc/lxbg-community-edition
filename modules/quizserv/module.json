@@ -1,0 +1,1 @@
+{"schema":1,"id":"org.lxbg.quizserv","name":"QuizServ","version":"0.1.0","api":"0.1","tier":"free","category":"games","state":"roadmap","entrypoints":{"php":[],"service":[]},"dependencies":[],"permissions":[],"migrations":[]}
