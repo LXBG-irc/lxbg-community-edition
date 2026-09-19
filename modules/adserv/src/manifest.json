@@ -1,0 +1,1 @@
+{"schema":1,"id":"org.lxbg.adserv","name":"AdServ","version":"0.1.0","api":"0.1","tier":"free","dependencies":[],"permissions":["channel.message.schedule","admin.settings"],"migrations":["001_install.sql"],"entrypoints":{"php":["module.php"]}}
